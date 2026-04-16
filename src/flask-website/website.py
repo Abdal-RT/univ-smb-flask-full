@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 API_URL = "http://localhost:5001"
 
-# ───── PAGE D'ACCUEIL ─────
+# ───── Home Page ─────
 @app.route("/")
 def start():
     return render_template('start.html')
