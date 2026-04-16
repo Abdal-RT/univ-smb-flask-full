@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}Détail Reverse Proxy{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Détail : {{ item.name }}</h2>
+    <p>Voici la configuration Nginx générée :</p>
+    <pre class="bg-dark text-light p-4 rounded"><code>
+server {
+    listen 80;
+    server_name {{ item.ip_bind }};
+
+    location / {
+        proxy_pass {{ item.pass }};
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+    </code></pre>
+    <a href="/rp/list" class="btn btn-secondary">Retour</a>
+</div>
+{% endblock %}

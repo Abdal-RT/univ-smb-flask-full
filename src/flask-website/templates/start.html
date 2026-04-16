@@ -1,14 +1,37 @@
 {% extends "layout.html" %}
 {% block title %}Accueil{% endblock %}
-{% block head %}
-{{ super() }}
-{% endblock %}
 {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col">
-        Hello, WebSite !
+<div class="container mt-4">
+    <h1>Bienvenue sur Web Configurator</h1>
+    <p class="lead">Choisissez une section à configurer :</p>
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h5 class="card-title">⚖️ Load Balancer</h5>
+                    <p class="card-text">Gérer les configurations Load Balancer</p>
+                    <a href="/lb/list" class="btn btn-primary">Accéder</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h5 class="card-title">🔄 Reverse Proxy</h5>
+                    <p class="card-text">Gérer les configurations Reverse Proxy</p>
+                    <a href="/rp/list" class="btn btn-primary">Accéder</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h5 class="card-title">🌐 Web Server</h5>
+                    <p class="card-text">Gérer les configurations Web Server</p>
+                    <a href="/ws/list" class="btn btn-primary">Accéder</a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 {% endblock %}

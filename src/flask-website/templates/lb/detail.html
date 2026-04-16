@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block title %}Détail Load Balancer{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Détail : {{ item.name }}</h2>
+    <p>Voici la configuration Nginx générée :</p>
+    <pre class="bg-dark text-light p-4 rounded"><code>
+upstream backend {
+    server {{ item.pass }};
+}
+
+server {
+    listen 80;
+    server_name {{ item.ip_bind }};
+
+    location / {
+        proxy_pass http://backend;
+    }
+}
+    </code></pre>
+    <a href="/lb/list" class="btn btn-secondary">Retour</a>
+</div>
+{% endblock %}

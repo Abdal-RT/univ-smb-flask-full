@@ -1,0 +1,2 @@
+[{"id":1, "name":"RP Inter 1", "ip_bind": "172.0.0.1", "pass":"http://localhost:8080"},
+{"id":2, "name":"RP Inter 2", "ip_bind": "172.0.0.2", "pass":"http://localhost:8081"}]

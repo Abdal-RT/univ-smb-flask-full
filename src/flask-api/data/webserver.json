@@ -1,0 +1,2 @@
+[{"id":1, "name":"WS Inter 1", "ip_bind": "172.0.0.1", "port":"8080", "root":"/var/www/html"},
+{"id":2, "name":"WS Inter 2", "ip_bind": "172.0.0.2", "port":"8081", "root":"/var/www/site2"}]

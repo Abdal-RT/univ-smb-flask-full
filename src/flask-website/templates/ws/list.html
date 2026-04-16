@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}Web Servers{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Web Servers</h2>
+        <a href="/ws/create" class="btn btn-success">+ Ajouter</a>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th><th>Nom</th><th>IP Bind</th><th>Port</th><th>Root</th><th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.ip_bind }}</td>
+                <td>{{ item.port }}</td>
+                <td>{{ item.root }}</td>
+                <td>
+                    <a href="/ws/{{ item.id }}" class="btn btn-sm btn-info">Détail</a>
+                    <a href="/ws/{{ item.id }}/delete" class="btn btn-sm btn-danger"
+                       onclick="return confirm('Supprimer ?')">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

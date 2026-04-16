@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}Créer Web Server{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Nouveau Web Server</h2>
+    <form method="POST" action="/ws/create">
+        <div class="mb-3">
+            <label class="form-label">Nom</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">IP Bind</label>
+            <input type="text" name="ip_bind" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Port</label>
+            <input type="text" name="port" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Root (chemin du site)</label>
+            <input type="text" name="root" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Créer</button>
+        <a href="/ws/list" class="btn btn-secondary">Annuler</a>
+    </form>
+</div>
+{% endblock %}

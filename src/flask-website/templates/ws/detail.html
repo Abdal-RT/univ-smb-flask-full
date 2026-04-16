@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}Détail Web Server{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Détail : {{ item.name }}</h2>
+    <p>Voici la configuration Nginx générée :</p>
+    <pre class="bg-dark text-light p-4 rounded"><code>
+server {
+    listen {{ item.port }};
+    server_name {{ item.ip_bind }};
+
+    root {{ item.root }};
+    index index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+    </code></pre>
+    <a href="/ws/list" class="btn btn-secondary">Retour</a>
+</div>
+{% endblock %}
