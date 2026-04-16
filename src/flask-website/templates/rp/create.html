@@ -10,7 +10,9 @@
         </div>
         <div class="mb-3">
             <label class="form-label">IP Bind</label>
-            <input type="text" name="ip_bind" class="form-control" required>
+            <input type="text" name="ip_bind" class="form-control"required 
+            pattern="^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-4]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]|[1-9])$"
+            title="Veuillez entrer une adresse IPv4 valide (ex: 192.168.1.10). Le dernier octet ne doit pas dépasser 254.">
         </div>
         <div class="mb-3">
             <label class="form-label">Pass (URL backend)</label>

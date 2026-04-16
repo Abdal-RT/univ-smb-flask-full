@@ -10,7 +10,9 @@
         </div>
         <div class="mb-3">
             <label class="form-label">IP Bind</label>
-            <input type="text" name="ip_bind" class="form-control" required>
+            <input type="text" name="ip_bind" class="form-control"required 
+            pattern="^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-4]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]|[1-9])$"
+            title="Veuillez entrer une adresse IPv4 valide (ex: 192.168.1.10). Le dernier octet ne doit pas dépasser 254.">
         </div>
         <div class="mb-3">
             <label class="form-label">Port</label>
@@ -18,7 +20,9 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Root (chemin du site)</label>
-            <input type="text" name="root" class="form-control" required>
+            <input type="text" name="root" class="form-control" required
+        pattern="^\/([-a-zA-Z0-9_.]+\/?)*$"
+        title="Veuillez entrer un chemin absolu valide (ex: /var/www/html). Il doit commencer par un slash (/) et ne pas contenir d'espaces.">
         </div>
         <button type="submit" class="btn btn-primary">Créer</button>
         <a href="/ws/list" class="btn btn-secondary">Annuler</a>
