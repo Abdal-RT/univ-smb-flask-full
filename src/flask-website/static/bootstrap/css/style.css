@@ -1,0 +1,399 @@
+/* ============================================================
+   Web Configurator — Theme CSS
+   Aesthetic: Dark industrial / terminal infrastructure
+   À placer dans : src/flask-website/static/css/theme.css
+   Et ajouter dans layout.html, après le lien bootstrap :
+   <link href="{{ url_for('static', filename='css/theme.css') }}" rel="stylesheet" />
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Syne:wght@400;700;800&display=swap');
+
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+  --bg:          #0e1117;
+  --bg-surface:  #161b25;
+  --bg-card:     #1c2333;
+  --border:      #2a3347;
+  --accent:      #00d4aa;
+  --accent-dim:  rgba(0, 212, 170, 0.12);
+  --accent-glow: rgba(0, 212, 170, 0.35);
+  --danger:      #ff4d6d;
+  --info:        #4da6ff;
+  --success:     #3dd68c;
+  --text:        #e2e8f0;
+  --text-muted:  #7a8ba0;
+  --code-bg:     #0a0d13;
+  --radius:      8px;
+  --radius-lg:   14px;
+  --transition:  0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset & Base ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  min-height: 100vh;
+  padding-bottom: 60px; /* footer space */
+
+  /* Subtle grid texture */
+  background-image:
+    linear-gradient(rgba(0, 212, 170, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 170, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Page entrance animation */
+body > * {
+  animation: fadeUp 0.4s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Navbar ─────────────────────────────────────────────────── */
+.navbar {
+  background: rgba(14, 17, 23, 0.92) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+}
+
+.navbar-brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--accent) !important;
+  letter-spacing: 0.04em;
+  transition: text-shadow var(--transition);
+}
+.navbar-brand::before {
+  content: '> ';
+  opacity: 0.5;
+}
+.navbar-brand:hover {
+  text-shadow: 0 0 16px var(--accent-glow);
+}
+
+.nav-link {
+  color: var(--text-muted) !important;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  padding: 0.4rem 0.9rem !important;
+  border-radius: var(--radius);
+  transition: color var(--transition), background var(--transition);
+}
+.nav-link:hover, .nav-link.active {
+  color: var(--accent) !important;
+  background: var(--accent-dim);
+}
+
+.navbar-toggler {
+  border-color: var(--border) !important;
+}
+.navbar-toggler-icon {
+  filter: invert(0.7);
+}
+
+/* ── Breadcrumb ─────────────────────────────────────────────── */
+.breadcrumb {
+  background: transparent;
+  padding: 0.75rem 0 0.25rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+}
+.breadcrumb-item a {
+  color: var(--accent);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity var(--transition);
+}
+.breadcrumb-item a:hover { opacity: 1; }
+.breadcrumb-item.active { color: var(--text-muted); }
+.breadcrumb-item + .breadcrumb-item::before {
+  color: var(--border);
+}
+
+/* ── Section ────────────────────────────────────────────────── */
+section {
+  min-height: calc(100vh - 110px);
+}
+
+/* ── Headings ───────────────────────────────────────────────── */
+h1, h2, h3, h4, h5 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: 2.2rem; }
+h2 { font-size: 1.6rem; }
+
+.lead {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+/* ── Cards (page d'accueil) ─────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent-dim) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 8px 32px var(--accent-glow);
+}
+.card:hover::before { opacity: 1; }
+
+.card-body { padding: 2rem 1.5rem; position: relative; }
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.card-text {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.4rem;
+}
+
+/* Staggered card animation */
+.row .col-md-4:nth-child(1) .card { animation-delay: 0.05s; }
+.row .col-md-4:nth-child(2) .card { animation-delay: 0.15s; }
+.row .col-md-4:nth-child(3) .card { animation-delay: 0.25s; }
+
+/* ── Boutons ────────────────────────────────────────────────── */
+.btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius);
+  padding: 0.5rem 1.1rem;
+  transition: all var(--transition);
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ripple effect */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.07);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.btn:active::after { opacity: 1; }
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0e1117;
+}
+.btn-primary:hover {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 18px var(--accent-glow);
+}
+
+.btn-success {
+  background: var(--success);
+  border-color: var(--success);
+  color: #0e1117;
+}
+.btn-success:hover {
+  background: transparent;
+  color: var(--success);
+  border-color: var(--success);
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+.btn-secondary:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+  background: rgba(255,255,255,0.04);
+}
+
+.btn-danger {
+  background: transparent;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+.btn-danger:hover {
+  background: var(--danger);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 77, 109, 0.4);
+}
+
+.btn-info {
+  background: transparent;
+  border-color: var(--info);
+  color: var(--info);
+}
+.btn-info:hover {
+  background: var(--info);
+  color: #0e1117;
+}
+
+/* Small buttons */
+.btn-sm {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.7rem;
+}
+
+/* ── Formulaires ────────────────────────────────────────────── */
+.form-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4rem;
+}
+
+.form-control {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  padding: 0.6rem 0.9rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-control::placeholder { color: var(--text-muted); opacity: 0.6; }
+
+.form-control:focus {
+  background: var(--bg-surface);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+  color: var(--text);
+  outline: none;
+}
+
+.form-control:invalid:not(:placeholder-shown) {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.12);
+}
+
+/* ── Table ──────────────────────────────────────────────────── */
+.table {
+  color: var(--text);
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+}
+
+.table > :not(caption) > * > * {
+  background: transparent;
+  border-bottom: 1px solid var(--border);
+  padding: 0.85rem 1rem;
+  vertical-align: middle;
+}
+
+.table thead.table-dark th {
+  background: var(--bg-surface) !important;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 2px solid var(--accent);
+  padding: 0.8rem 1rem;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: rgba(255,255,255,0.02) !important;
+}
+
+.table-hover > tbody > tr {
+  transition: background var(--transition);
+}
+.table-hover > tbody > tr:hover > * {
+  background-color: var(--accent-dim) !important;
+}
+
+/* Wrapper table avec bords arrondis */
+.table-responsive, .table {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* ── Code Block ─────────────────────────────────────────────── */
+pre.bg-dark {
+  background: var(--code-bg) !important;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  border-left: 3px solid var(--accent);
+  padding: 1.5rem 2rem !important;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #a8d8c0 !important;
+  overflow-x: auto;
+  position: relative;
+}
+
+pre.bg-dark::before {
+  content: 'nginx.conf';
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+footer .navbar {
+  background: rgba(14, 17, 23, 0.95) !important;
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted) !important;
+}
+
+/* ── Container spacing ──────────────────────────────────────── */
+.container { max-width: 960px; }
+
+/* ── Shadows utilitaires ────────────────────────────────────── */
+.shadow { box-shadow: 0 4px 24px rgba(0,0,0,0.4) !important; }
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
