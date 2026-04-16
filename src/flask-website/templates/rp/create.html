@@ -17,6 +17,8 @@
         <div class="mb-3">
             <label class="form-label">Pass (URL backend)</label>
             <input type="text" name="pass" class="form-control" required>
+            <input type="url" name="pass" class="form-control" required  pattern="https?://.*"title="Veuillez entrer une URL valide commençant par http:// ou https://"
+        placeholder="http://127.0.0.1:8080">
         </div>
         <button type="submit" class="btn btn-primary">Créer</button>
         <a href="/rp/list" class="btn btn-secondary">Annuler</a>

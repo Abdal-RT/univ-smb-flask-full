@@ -12,5 +12,12 @@
     "ip_bind": "172.0.0.2",
     "port": "8081",
     "root": "/var/www/site2"
+  },
+  {
+    "name": "aaaaa",
+    "ip_bind": "172.0.0.67",
+    "port": "8080",
+    "root": "t t t t t ",
+    "id": 3
   }
 ]
